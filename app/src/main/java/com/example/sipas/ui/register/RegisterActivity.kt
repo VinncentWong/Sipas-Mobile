@@ -79,21 +79,17 @@ class RegisterActivity: AppCompatActivity() {
                 }
             }
 
-            val job = lifecycle.coroutineScope.launch(
+            lifecycle.coroutineScope.launch(
                 coroutineExceptionHandler
             ) {
-                Log.d("RegisterActivity", "sblm retrofit memanggil, progressBar visible = ${progressBar.visibility}")
                 val response = Api
                     .getInstance()
                     .create(OrangtuaApi::class.java)
                     .insertOrangtua(ortu)
-                Log.d("RegisterActivity", "Response = $response")
                 runOnUiThread {
                     if(response.success){
-                        Log.d("RegisterActivity", "sukses")
                         Toast.makeText(activity, "sukses membuat data orangtua", Toast.LENGTH_SHORT).show()
                     } else {
-                        Log.d("RegisterActivity", "gagal")
                         Toast.makeText(activity, response.message, Toast.LENGTH_SHORT).show()
                     }
                     progressBar.visibility = View.GONE
