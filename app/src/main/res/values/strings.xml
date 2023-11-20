@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">Sipas</string>
+    <string name="lorem_ipsum">Lorem Ipsum Amet Dolor</string>
+    <string name="selanjutnya">Selanjutnya</string>
+    <string name="lewati">Lewati</string>
+
+    <!--RegisterActivityString-->
+    <string name="daftar_akun">Daftar Akun</string>
+    <string name="daftar_akun_description">Daftarkan akunmu agar dapat menggunakan layanan pada aplikasi kami</string>
+    <string name="input_ibu_hint">Nama Lengkap Ibu</string>
+    <string name="input_ayah_hint">Nama Lengkap Ayah</string>
+    <string name="input_ibu_description">Masukkan nama Ibu Anda</string>
+    <string name="input_ayah_description">Masukkan nama Ayah Anda</string>
+    <string name="input_email_hint">Email</string>
+    <string name="input_email_decsritpion">Masukkan Alamat Email Aktif Anda</string>
+    <string name="input_password_description">Masukkan Kata Sandi Yang Anda Ingin Buat</string>
+    <string name="input_password_hint">Password</string>
+    <string name="register_button_content">Daftar</string>
+    <string name="sudah_punya_akun">Sudah punya akun? <font color='#682860'>Masuk</font></string>
 </resources>
