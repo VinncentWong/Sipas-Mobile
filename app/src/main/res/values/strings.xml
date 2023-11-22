@@ -17,4 +17,15 @@
     <string name="input_password_hint">Password</string>
     <string name="register_button_content">Daftar</string>
     <string name="sudah_punya_akun">Sudah punya akun? <font color='#682860'>Masuk</font></string>
+
+    <!--Login.kt-->
+    <string name="selamat_datang">Selamat Datang</string>
+    <string name="login">Login</string>
+    <string name="login_description">Masuk ke akun Anda untuk dapat menggunakan layanan kami</string>
+    <string name="login_email_placeholder">Email</string>
+    <string name="login_password_placeholder">Password</string>
+    <string name="login_email_helper">Pastikan alamat emailnya telah terverifikasi</string>
+    <string name="login_password_helper">Pastikan kata sandi yang dimasukkan benar</string>
+    <string name="login_lupa_password">Lupa Kata Sandi</string>
+    <string name="login_belum_punya_akun">Belum punya akun? <font color='#682860'>Daftar</font></string>
 </resources>

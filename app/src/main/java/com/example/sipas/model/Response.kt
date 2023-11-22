@@ -1,8 +1,20 @@
 package com.example.sipas.model
 
-data class Response<out T>(
-    val message: String,
-    val data: T,
-    val success: Boolean,
-    val jwtToken: String
-)
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "response")
+data class Response<T>(
+    var id: Int,
+
+    var message: String,
+
+    var data: T?,
+
+    var success: Boolean,
+
+    var jwtToken: String
+){
+    constructor(): this(0, "", null, false, "")
+}

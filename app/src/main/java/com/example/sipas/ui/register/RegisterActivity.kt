@@ -1,9 +1,11 @@
 package com.example.sipas.ui.register
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ProgressBar
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.coroutineScope
@@ -12,6 +14,7 @@ import com.example.sipas.databinding.ActivityRegisterOrangtuaBinding
 import com.example.sipas.model.Orangtua
 import com.example.sipas.model.Response
 import com.example.sipas.retrofit.Api
+import com.example.sipas.ui.login.LoginActivity
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.google.gson.Gson
@@ -35,6 +38,8 @@ class RegisterActivity: AppCompatActivity() {
 
     private lateinit var progressBar: ProgressBar
 
+    private lateinit var loginText: TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         val activity = this
@@ -49,6 +54,12 @@ class RegisterActivity: AppCompatActivity() {
         password = binding.inputPassword
         registerButton = binding.registerButton
         progressBar = binding.progressBar
+        loginText = binding.textView
+
+        loginText.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+        }
 
         registerButton.setOnClickListener {
 
@@ -94,6 +105,9 @@ class RegisterActivity: AppCompatActivity() {
                     }
                     progressBar.visibility = View.GONE
                 }
+
+                val intent = Intent(applicationContext, LoginActivity::class.java)
+                startActivity(intent)
             }
         }
     }
