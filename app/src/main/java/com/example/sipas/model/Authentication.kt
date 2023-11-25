@@ -5,10 +5,14 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "authentication")
-class Authentication(
-    @PrimaryKey(autoGenerate = false)
-    val id: Int,
+data class Authentication(
+
+    @ColumnInfo(name = "authentication_data")
+    val data: AuthenticationData,
 
     @ColumnInfo(name = "jwt_token")
-    val jwtToken: String
+    val jwtToken: String,
+
+    @PrimaryKey
+    val id: Int? = null,
 ){}

@@ -28,4 +28,15 @@
     <string name="login_password_helper">Pastikan kata sandi yang dimasukkan benar</string>
     <string name="login_lupa_password">Lupa Kata Sandi</string>
     <string name="login_belum_punya_akun">Belum punya akun? <font color='#682860'>Daftar</font></string>
+
+    <!--Home.kt-->
+    <string name="home_layanan_kami">Layanan Kami</string>
+    <string name="home_description">Berikut adalah layanan bantuan yang dapat Anda gunakan untuk mencegah stunting pada anak</string>
+    
+    <!--Profile.kt-->
+    <string name="profile_nama_ayah_ibu_hint">Masukkan sesuai dengan nama anda di KTP</string>
+    <string name="profile_email_hint">Masukkan alamat email aktif anda</string>
+    <string name="profile_nomor_telepon_placeholder">Nomor Telepon</string>
+    <string name="profile_nomor_telepon_hint">Masukkan nomor telepon aktif Anda</string>
+    <string name="profile_simpan_perubahan">Simpan Perubahan</string>
 </resources>

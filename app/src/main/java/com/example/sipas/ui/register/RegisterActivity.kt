@@ -10,11 +10,15 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.coroutineScope
 import com.example.sipas.api.OrangtuaApi
+import com.example.sipas.database.AuthenticationDatabase
 import com.example.sipas.databinding.ActivityRegisterOrangtuaBinding
 import com.example.sipas.model.Orangtua
 import com.example.sipas.model.Response
 import com.example.sipas.retrofit.Api
+import com.example.sipas.ui.home.HomeActivity
 import com.example.sipas.ui.login.LoginActivity
+import com.example.sipas.view_model.authentication.AuthenticationViewModel
+import com.example.sipas.view_model.authentication.AuthenticationViewModelFactory
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.google.gson.Gson
@@ -40,6 +44,8 @@ class RegisterActivity: AppCompatActivity() {
 
     private lateinit var loginText: TextView
 
+    private lateinit var authViewModel: AuthenticationViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         val activity = this
@@ -56,6 +62,12 @@ class RegisterActivity: AppCompatActivity() {
         progressBar = binding.progressBar
         loginText = binding.textView
 
+        authViewModel = AuthenticationViewModelFactory(
+            AuthenticationDatabase
+                .getInstance(this)
+                .authenticationDao()
+        ).create(AuthenticationViewModel::class.java)
+
         loginText.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
@@ -71,7 +83,8 @@ class RegisterActivity: AppCompatActivity() {
                 namaAyah = inputTextAyah.text?.toString() ?: "",
                 namaIbu = inputTextIbu.text?.toString() ?: "",
                 email = email.text?.toString() ?: "",
-                password = password.text?.toString() ?: ""
+                password = password.text?.toString() ?: "",
+                isConnectedWithFaskes = false
             )
 
             val coroutineExceptionHandler = CoroutineExceptionHandler{
@@ -108,6 +121,18 @@ class RegisterActivity: AppCompatActivity() {
 
                 val intent = Intent(applicationContext, LoginActivity::class.java)
                 startActivity(intent)
+            }
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        lifecycle.coroutineScope.launch {
+            val authentication = authViewModel.getAuthentication()
+            authentication?.let {
+                val intent = Intent(applicationContext, HomeActivity::class.java)
+                startActivity(intent)
+                finish()
             }
         }
     }

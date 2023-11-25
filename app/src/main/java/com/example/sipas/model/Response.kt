@@ -6,7 +6,6 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "response")
 data class Response<T>(
-    var id: Int,
 
     var message: String,
 
@@ -16,5 +15,5 @@ data class Response<T>(
 
     var jwtToken: String
 ){
-    constructor(): this(0, "", null, false, "")
+    constructor(): this( "", null, false, "")
 }

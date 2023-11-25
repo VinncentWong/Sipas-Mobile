@@ -15,5 +15,8 @@ interface AuthenticationDao {
     fun insertAuthInfo(data: Authentication)
 
     @Query("SELECT * FROM authentication LIMIT 1")
-    fun getAuthInfo(): Authentication
+    fun getAuthInfo(): Authentication?
+
+    @Query("DELETE FROM authentication")
+    fun deleteAuthInfo()
 }

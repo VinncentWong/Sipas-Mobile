@@ -1,5 +1,6 @@
 package com.example.sipas.ui.login
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -12,8 +13,11 @@ import com.example.sipas.api.OrangtuaApi
 import com.example.sipas.database.AuthenticationDatabase
 import com.example.sipas.databinding.ActivityLoginBinding
 import com.example.sipas.model.Authentication
+import com.example.sipas.model.AuthenticationData
 import com.example.sipas.model.Login
 import com.example.sipas.retrofit.Api
+import com.example.sipas.ui.home.HomeActivity
+import com.example.sipas.ui.register.RegisterActivity
 import com.example.sipas.util.translateExceptionIntoResponse
 import com.example.sipas.view_model.authentication.AuthenticationViewModel
 import com.example.sipas.view_model.authentication.AuthenticationViewModelFactory
@@ -38,6 +42,8 @@ class LoginActivity: AppCompatActivity() {
 
     private lateinit var progressBar: ProgressBar
 
+    private lateinit var belumPunyaAkun: TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -50,11 +56,18 @@ class LoginActivity: AppCompatActivity() {
         buttonLogin = binding.loginButton
         errorMessage = binding.errorMessage
         progressBar = binding.progressBar
+        belumPunyaAkun = binding.belumPunyaAkun
         authViewModel = AuthenticationViewModelFactory(
             AuthenticationDatabase
                 .getInstance(applicationContext)
                 .authenticationDao()
         ).create(AuthenticationViewModel::class.java)
+
+        belumPunyaAkun.setOnClickListener {
+            val intent = Intent(applicationContext, RegisterActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
 
         buttonLogin.setOnClickListener {
 
@@ -78,14 +91,39 @@ class LoginActivity: AppCompatActivity() {
 
                 Log.d("LoginActivity", "accepting response $response")
 
-                authViewModel
-                    .insertAuthenticationInfo(Authentication(response.id, response.jwtToken))
+                try{
+                    authViewModel
+                        .insertAuthenticationInfo(Authentication(
+                            AuthenticationData(response.data?.id ?: -1),
+                            response.jwtToken
+                        ))
+                } catch (e: Exception){
+                    Log.e("LoginActivity", "error occurred when insert auth info into room ${e.message}")
+                }
 
-                Toast.makeText(applicationContext, "sukses login", Toast.LENGTH_SHORT)
+                Log.d("LoginActivity", "finish insert auth info into room")
 
                 runOnUiThread {
                     progressBar.visibility = View.INVISIBLE
                 }
+
+                Log.d("LoginActivity", "starting intent")
+
+                val intent = Intent(applicationContext, HomeActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        lifecycle.coroutineScope.launch {
+            val authentication = authViewModel.getAuthentication()
+            authentication?.let {
+                val intent = Intent(applicationContext, HomeActivity::class.java)
+                startActivity(intent)
+                finish()
             }
         }
     }
