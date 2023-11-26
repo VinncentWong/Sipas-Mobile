@@ -184,7 +184,7 @@ class ProfileActivity: AppCompatActivity() {
                         }
                     }
 
-                    Toast.makeText(applicationContext, "sukses mengupdate data profile", Toast.LENGTH_SHORT)
+                    Toast.makeText(applicationContext, "sukses mengupdate data profile", Toast.LENGTH_SHORT).show()
                 } catch (e: Exception){
                     Log.e("ProfileActivity", "error occurred with message ${e.message}")
                 }

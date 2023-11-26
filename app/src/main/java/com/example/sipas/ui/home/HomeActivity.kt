@@ -21,6 +21,8 @@ import com.example.sipas.database.AuthenticationDatabase
 import com.example.sipas.databinding.ActivityHomeBinding
 import com.example.sipas.retrofit.Api
 import com.example.sipas.ui.login.LoginActivity
+import com.example.sipas.ui.pantau_kehamilan.ListDataKehamilanActivity
+import com.example.sipas.ui.pantau_kehamilan.PantauKehamilanActivity
 import com.example.sipas.ui.profile.ProfileActivity
 import com.example.sipas.util.translateExceptionIntoResponse
 import com.example.sipas.view_model.authentication.AuthenticationViewModel
@@ -97,6 +99,18 @@ class HomeActivity: AppCompatActivity(){
 
         button1.setOnClickListener {
             val intent = Intent(applicationContext, ProfileActivity::class.java)
+            startActivity(intent)
+        }
+
+        button2.setOnClickListener {
+            val intent = Intent(applicationContext, PantauKehamilanActivity::class.java)
+            startActivity(intent)
+        }
+
+        // TODO: Add Button 3 disini yak Mikail
+
+        button4.setOnClickListener {
+            val intent = Intent(applicationContext, ListDataKehamilanActivity::class.java)
             startActivity(intent)
         }
 
