@@ -24,6 +24,7 @@ import com.example.sipas.ui.login.LoginActivity
 import com.example.sipas.ui.pantau_kehamilan.ListDataKehamilanActivity
 import com.example.sipas.ui.pantau_kehamilan.PantauKehamilanActivity
 import com.example.sipas.ui.profile.ProfileActivity
+import com.example.sipas.ui.resep_makanan.ResepMakananActivity
 import com.example.sipas.util.translateExceptionIntoResponse
 import com.example.sipas.view_model.authentication.AuthenticationViewModel
 import com.example.sipas.view_model.authentication.AuthenticationViewModelFactory
@@ -108,6 +109,10 @@ class HomeActivity: AppCompatActivity(){
         }
 
         // TODO: Add Button 3 disini yak Mikail
+        button3.setOnClickListener {
+            val intent = Intent(applicationContext, ResepMakananActivity::class.java)
+            startActivity(intent)
+        }
 
         button4.setOnClickListener {
             val intent = Intent(applicationContext, ListDataKehamilanActivity::class.java)

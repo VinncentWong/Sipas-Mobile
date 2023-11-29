@@ -40,6 +40,7 @@
         <activity android:name=".ui.profile.ProfileActivity"></activity>
         <activity android:name=".ui.pantau_kehamilan.PantauKehamilanActivity"></activity>
         <activity android:name=".ui.pantau_kehamilan.ListDataKehamilanActivity"></activity>
+        <activity android:name=".ui.resep_makanan.ResepMakananActivity"></activity>
     </application>
 
 </manifest>
